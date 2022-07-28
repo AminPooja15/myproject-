@@ -1,0 +1,60 @@
+<h2>Customer Details</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">DOB</th>
+        <th scope="col">SSN</th>
+        <th scope="col">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cust of this.custDetails;">
+        <th scope="row"><a (click)="open(mymodal,cust)">{{cust.customer_number}}</a></th>
+        <!-- <th scope="row"><a >{{cust.customer_number}}</a></th> -->
+        <td>{{cust.first_name}}</td>
+        <td>{{cust.last_name}}</td>
+        <td>{{cust.date_birth}}</td>
+        <td>{{cust.ssn}}</td>
+        <td>{{cust.age}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Customer Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-sm-4"><b>Email:</b></div>
+          <div class="col-6 col-sm-4">{{this.selectedCustDetails.email}}</div>
+        </div>
+        <div class="row">
+          <div class="col-6 col-sm-4"><b>Address:</b></div>
+          <div class="col-6 col-sm-4"><span>{{this.selectedCustDetails.primary_address.address_line_1}},</span>
+            <span>{{this.selectedCustDetails.primary_address.city}},{{this.selectedCustDetails.primary_address.state}},</span>
+            <br/><span>{{this.selectedCustDetails.primary_address.zip_code}}</span></div>
+        </div>
+        <div class="row">
+          <div class="col-6 col-sm-4"><b>Phone Number:</b></div>
+          <div class="col-6 col-sm-4">{{this.selectedCustDetails.mobile_phone_number}}</div>
+          
+        </div>
+        <div class="row">
+          <div class="col-6 col-sm-4"><b>Join Date:</b></div>
+          <div class="col-6 col-sm-4">{{this.selectedCustDetails.join_date}}</div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+  </ng-template> 
